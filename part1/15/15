@@ -1,0 +1,12 @@
+
+
+docker build -t fullstackharkka .
+docker run -p 3001:3001 -e MONGODB_URI="xxx" fullstackharkka
+(xxx = you need mongoDB connection string)
+
+
+Docker hub:
+https://hub.docker.com/r/miahon/fullstackharkka
+
+
+

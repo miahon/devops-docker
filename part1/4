@@ -1,0 +1,23 @@
+
+~/devops$ docker run -d devopsdockeruh/exec_bash_exercise
+316fbc0fb2f018361f9b05c96203e50dc741257beb4a777cfbfabe1826f1c8fa
+
+~/devops$ docker container ls -la
+CONTAINER ID        IMAGE                               COMMAND                  CREATED             STATUS              PORTS               NAMES
+316fbc0fb2f0        devopsdockeruh/exec_bash_exercise   "docker-entrypoint.s…"   14 seconds ago      Up 11 seconds                           practical_pare
+
+~/devops$ docker exec -it practical_pare bash
+root@316fbc0fb2f0:/usr/app# tail -f ./logs.txt
+Secret message is:
+"Docker is easy"
+Fri, 04 Sep 2020 14:11:57 GMT
+Fri, 04 Sep 2020 14:12:00 GMT
+Fri, 04 Sep 2020 14:12:03 GMT
+Fri, 04 Sep 2020 14:12:06 GMT
+Secret message is:
+"Docker is easy"
+
+
+
+
+

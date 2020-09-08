@@ -1,0 +1,9 @@
+
+docker build -t munappi .
+docker run -p 5000:5000 munappi
+
+INFO: Accepting connections at http://localhost:5000
+Exercise 1.10: Congratulations! You configured your ports correctly!
+
+
+

@@ -1,0 +1,7 @@
+
+docker build -t munbakki .
+
+docker run -p 8000:8000 -v $(pwd)/logs.txt:/backend-example-docker/logs.txt munbakki 
+
+
+

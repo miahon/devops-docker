@@ -1,0 +1,42 @@
+
+~/devops$ docker run -d -it --name focal  ubuntu:focal sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'
+8dff6b90ecdc99f4c9465d32fb149df9e083aa38790cd3ea97047e98236fa159
+
+~/devops$ docker container ls -a
+CONTAINER ID        IMAGE               COMMAND                   CREATED             STATUS              PORTS               NAMES
+8dff6b90ecdc        ubuntu:focal        "sh -c 'echo \"Input …"   26 seconds ago      Up 23 seconds                           focal
+
+
+~/devops$ docker attach focal 
+helsinki.fi
+Searching..
+sh: 1: curl: not found
+
+
+~/devops$ docker exec -it focal bash
+Error response from daemon: Container 8dff6b90ecdc99f4c9465d32fb149df9e083aa38790cd3ea97047e98236fa159 is not running
+
+~/devops$ docker start focal
+focal
+
+~/devops$ docker exec -it focal bash
+root@8dff6b90ecdc:/# apt update
+root@8dff6b90ecdc:/# apt install curl
+root@8dff6b90ecdc:/# exit
+exit
+
+
+~/devops$ docker attach focal
+helsinki.fi
+Searching..
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>301 Moved Permanently</title>
+</head><body>
+<h1>Moved Permanently</h1>
+<p>The document has moved <a href="http://www.helsinki.fi/">here</a>.</p>
+</body></html>
+
+
+
+
