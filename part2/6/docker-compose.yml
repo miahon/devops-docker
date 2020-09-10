@@ -1,0 +1,39 @@
+version: '3' 
+
+services: 
+
+   db:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: example
+    container_name: db_mundb
+
+
+   munappi: 
+    image: munappi
+    ports: 
+      - 5000:5000
+    environment:
+        -  API_URL=http://localhost:8000
+   munbakki:
+     image: munbakki
+     volumes: 
+       - ./logs.txt:/backend-example-docker/logs.txt 
+     ports: 
+       - 8000:8000
+     environment:
+        - FRONT_URL=http://localhost:5000
+        - REDIS=redis
+        - REDIS_PORT=6379
+        - DB_USERNAME=docker
+        - DB_PASSWORD=example
+        - DB_HOST=db    
+
+
+   redis:
+     image: "redis:alpine" 
+
+        
+        
