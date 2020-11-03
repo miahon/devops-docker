@@ -1,0 +1,18 @@
+
+docker build -t munappi -f Dockerfile-f .
+docker build -t munbakki -f Dockerfile-b .
+
+
+#backend
+docker run -d -p 8000:8000 -v $(pwd)/logs.txt:/usr/app/logs.txt -e FRONT_URL="http://localhost:5000" munbakki 
+
+
+#front
+docker run -d -p 5000:5000 -e "API_URL=http://localhost:8000" munappi
+
+size: (focal fossa)
+munbakki  330MB
+munappi   525MB
+
+
+

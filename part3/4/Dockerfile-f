@@ -1,0 +1,23 @@
+FROM ubuntu:focal 
+
+WORKDIR /usr/app
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt install -y \
+ curl && \
+ curl -sL https://deb.nodesource.com/setup_10.x | bash && \
+ apt-get install -y nodejs git && \
+ git clone https://github.com/docker-hy/frontend-example-docker.git
+ 
+RUN npm install && \
+ apt-get purge -y --auto-remove curl && apt-get purge -y --auto-remove git && \
+ rm -rf /var/lib/apt/lists/* && \
+ useradd -m app 
+ 
+RUN	chown app -R /usr/app 
+USER app
+ 
+EXPOSE 5000
+CMD ["npm","start"]
+
+
+
